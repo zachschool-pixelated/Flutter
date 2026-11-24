@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+
+class MainAxisAlignmentEndScreen extends StatelessWidget {
+  const MainAxisAlignmentEndScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: const Color(0xFFFAF4FC),
+      appBar: AppBar(
+        backgroundColor: const Color(0xFF00897B),
+        centerTitle: true,
+        title: const Text(
+          'TASK 3 - ALIGNMENTS',
+          style: TextStyle(
+            color: Colors.black87,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            'MainAxisAlignment.end',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
+          ),
+          const SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(width: 65, height: 65, color: const Color(0xFFF44336)),
+              Container(width: 65, height: 65, color: const Color(0xFFFFEB3B)),
+              Container(width: 65, height: 65, color: const Color(0xFF2196F3)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
