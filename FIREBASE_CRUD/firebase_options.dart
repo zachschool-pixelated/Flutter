@@ -57,7 +57,6 @@ class DefaultFirebaseOptions {
     projectId: 'basiccrud-242d7a',
     storageBucket: 'basiccrud-242d7a.firebasestorage.app',
   );
-
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBx5LVF7m0NFYij51GQDUckbevmPvdBgN8',
     appId: '1:621469823811:ios:905b6e01c2195d4895b5f6',

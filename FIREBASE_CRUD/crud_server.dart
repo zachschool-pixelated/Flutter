@@ -1,14 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CrudService {
-  final CollectionReference items =
-      FirebaseFirestore.instance.collection('items');
+  final CollectionReference items = FirebaseFirestore.instance.collection(
+    'items',
+  );
 
   Future<void> addItem(String name, int quantity) {
     //CREATE
     return items.add({
       'name': name,
       'quantity': quantity,
+      'isFavorite': false,
       'createdAt': Timestamp.now(),
     });
   }
@@ -20,10 +22,11 @@ class CrudService {
 
   //UPDATE
   Future<void> updateItem(String id, String name, int quantity) {
-    return items.doc(id).update({
-      'name': name,
-      'quantity': quantity,
-    });
+    return items.doc(id).update({'name': name, 'quantity': quantity});
+  }
+
+  Future<void> toggleFavorite(String id, bool isFavorite) {
+    return items.doc(id).update({'isFavorite': isFavorite});
   }
 
   //DELETE
