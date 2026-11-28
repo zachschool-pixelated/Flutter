@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'auth_service.dart';
 import 'register_page.dart';
 import 'homepage.dart';
@@ -53,6 +54,45 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               SizedBox(height: 12),
+
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () async {
+                    final email = emailCtrl.text.trim();
+                    if (email.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Enter your email first.'),
+                        ),
+                      );
+                      return;
+                    }
+
+                    try {
+                      await auth.sendPasswordResetEmail(email);
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'If an account exists for that email, a reset link will be sent.',
+                          ),
+                        ),
+                      );
+                    } on FirebaseAuthException {
+                      if (!context.mounted) return;
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text(
+                            'Could not send the reset email. Check the address and try again.',
+                          ),
+                        ),
+                      );
+                    }
+                  },
+                  child: const Text('Forgot password?'),
+                ),
+              ),
 
               ElevatedButton(
                 child: loading
